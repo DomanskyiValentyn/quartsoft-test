@@ -1,0 +1,92 @@
+@import './variables';
+@import './mixins';
+@import './typography/import';
+@import './elements/import';
+@import './helpers';
+@import './keyframes';
+@import './core';
+
+* {
+  box-sizing: border-box;
+  outline: rgba($color: #000000, $alpha: 0);
+  font-family: $font-face, sans-serif;
+  color: $yellow;
+  touch-action: manipulation;
+
+  &::selection {
+    background-color: $yellow;
+    color: $black;
+  }
+}
+
+html {
+  height: 100%;
+
+  background-image: url('https://media.istockphoto.com/vectors/space-stars-background-night-sky-and-stars-seamless-pattern-stars-on-vector-id1181901656?k=20&m=1181901656&s=170667a&w=0&h=-uoa075CQAyweXF83PbTfipkksVFk81UAvYNdkvqFwQ=');
+
+  overflow-x: hidden;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  object-fit: cover;
+
+  user-select: none;
+}
+
+a {
+  text-decoration: none;
+
+  transition: $trs;
+}
+
+img {
+  user-select: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+p,
+span,
+small,
+button,
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+b {
+  color: inherit;
+}
+
+ol,
+ul,
+nav {
+  list-style: none;
+}
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+button {
+  background: none;
+  border: none;
+
+  cursor: pointer;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
