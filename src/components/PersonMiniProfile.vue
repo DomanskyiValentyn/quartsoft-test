@@ -2,10 +2,34 @@
   <div class="person-mini-profile">
     <h2>{{ $props.person.name }}</h2>
 
-    <p>{{ $props.person.species }}</p>
-    <p>{{ $props.person.homeworld }}</p>
-    <p>{{ $props.person.films }}</p>
-    <p>{{ $props.person.species }}</p>
+    <p>From: {{ $store.state.planets.result[getIdFromURL($props.person.homeworld) - 1].name }}</p>
+    <hr>
+
+    <template v-if="$props.person.films.length">
+      <p class="m-bottom-10"><b>Appearances: </b></p>
+
+      <ul>
+        <template v-for="(film, index) in $props.person.films" :key="index">
+          <li>
+            <p>{{ $store.state.films.result[getIdFromURL(film) - 1].title }}</p>
+          </li>
+        </template>
+      </ul>
+    </template>
+
+    <template v-if="$props.person.species.length">
+      <hr>
+
+      <p class="m-bottom-10"><b>Specie: </b></p>
+
+      <ul>
+        <template v-for="(specie, index) in $props.person.species" :key="index">
+          <li>
+            <p>{{ $store.state.species.result[getIdFromURL(specie) - 1].name }}</p>
+          </li>
+        </template>
+      </ul>
+    </template>
   </div>
 </template>
 
@@ -22,25 +46,6 @@ import { getIdFromURL } from '@/utils';
 export default class PersonMiniProfile extends Vue {
   public getIdFromURL = getIdFromURL;
 }
-
-// {
-//   name: string
-//   height: string
-//   mass: string
-//   hair_color: string
-//   skin_color: string
-//   eye_color: string
-//   birth_year: string
-//   gender: string
-//   homeworld: string
-//   films: Array<string> // URL
-//   species: Array<string> // URL
-//   vehicles: Array<string> // URL
-//   starships: Array<string> // URL
-//   created: string
-//   edited: string
-//   url
-// }
 </script>
 
 <style lang="scss">

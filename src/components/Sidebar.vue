@@ -13,7 +13,7 @@
     />
 
     <SidebarFileSlot
-      title="Planets !"
+      title="Planets"
       :list="$store.state.planets.result"
       @result="handleChangeFilter('planets', $event)"
     />

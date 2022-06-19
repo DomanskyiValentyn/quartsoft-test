@@ -1,15 +1,21 @@
 <template>
   <Loader v-if="loader" />
 
-  <main>
-    <Sidebar @filters="filters = $event" />
+  <template v-else>
+    <main>
+      <Sidebar @filters="filters = $event" />
 
-    <ul class="person-list">
-      <template v-for="(person, index) in filterPeople" :key="index">
-        <li><PersonMiniProfile :person="person" /></li>
-      </template>
-    </ul>
-  </main>
+      <ul class="person-list">
+        <template v-for="(person, index) in filterPeople" :key="index">
+          <li><PersonMiniProfile :person="person" /></li>
+        </template>
+      </ul>
+    </main>
+
+    <footer>
+      <p>Valentyn Domanskyi</p>
+    </footer>
+  </template>
 </template>
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
@@ -132,10 +138,20 @@ export default class App extends Vue {
       });
   }
 
-  mounted(): void {
-    const { people } = this.$store.state;
+  created(): void {
+    const {
+      people,
+      films,
+      species,
+      planets,
+    } = this.$store.state;
 
-    if (people.count !== people.result.length || people.count === 0) {
+    if (
+      (people.count !== people.result.length || people.count === 0)
+      || (films.count !== films.result.length || films.count === 0)
+      || (species.count !== species.result.length || species.count === 0)
+      || (planets.count !== planets.result.length || planets.count === 0)
+    ) {
       this.$store.commit('resetState');
       this.getAllPeople();
     }
@@ -146,12 +162,33 @@ export default class App extends Vue {
 <style lang="scss" scoped>
 main {
   display: flex;
+  align-items: flex-start;
   gap: 20px;
+  padding: 20px;
 
   .person-list {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, 300px);
+    width: 100%;
     gap: 20px;
+
+    .person-mini-profile {
+      height: 100%;
+    }
   }
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 50px;
+
+  border-top: 2px solid $yellow;
+
+  margin: {
+    top: 30px;
+  };
 }
 </style>

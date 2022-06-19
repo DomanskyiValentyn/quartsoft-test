@@ -53,9 +53,29 @@ export default class SidebarFileSlot extends Vue {
 
 <style lang="scss">
 .sidebar__filter-slot {
+  min-width: 250px;
+
+  margin: {
+    bottom: 20px;
+  };
+
   &--slot {
-    display: flex;
-    align-items: center;
+    margin: {
+      bottom: 10px;
+    };
+
+    label {
+      display: flex;
+      align-items: center;
+
+      cursor: pointer;
+
+      p {
+        margin: {
+          left: 10px;
+        };
+      }
+    }
   }
 }
 </style>
