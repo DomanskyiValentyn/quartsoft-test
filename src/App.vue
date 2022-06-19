@@ -65,8 +65,6 @@ export default class App extends Vue {
       array = array.filter((p) => this.filters.planets.some((pl) => pl === p.homeworld));
     }
 
-    console.log(array);
-
     return array;
   }
 

@@ -8,7 +8,7 @@
       <template v-for="(slot, index) in $props.list" :key="index">
         <li class="sidebar__filter-slot--slot">
           <label>
-            <input type="checkbox" :name="slot.name || slot.title" id="" @change="handleChange(slot)">
+            <input type="checkbox" :name="slot.name || slot.title" @change="handleChange(slot)">
             <p>{{ slot.name || slot.title }}</p>
           </label>
         </li>
@@ -40,8 +40,6 @@ export default class SidebarFileSlot extends Vue {
 
   public handleChange(slot: Person | Film | Planet | Specie): void {
     const index = this.filterArray.findIndex((u) => u === slot.url);
-
-    console.log(slot);
 
     if (index < 0) this.filterArray.push(slot.url);
     else this.filterArray.splice(index, 1);
